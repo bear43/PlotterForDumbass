@@ -42,7 +42,7 @@ int main()
     XYPlotter xp(bs);
     xp.update();
     set<Point<float>*> &refPoints = bs.getPoints();
-    f_x(refPoints);
+    f_x2(refPoints);
     BaseDrawer::init();
     return 0;
 }

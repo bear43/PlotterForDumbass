@@ -17,6 +17,7 @@ protected:
     Drawer& drawer;
     set<Point<float>*> points;
     set<Line*> lines;
+    set<Text*> texts;
     virtual void generatePoints() = 0;
     virtual void generateLines() = 0;
 public:
@@ -29,10 +30,10 @@ public:
         if(lines.empty()) generateLines();
         set<Point<float>*> &refPoint = drawer.getPoints();
         set<Line*> &refLine = drawer.getLines();
+        set<Text*> &refText = drawer.getTexts();
         std::copy(points.begin(), points.end(), std::inserter(refPoint, refPoint.end()));
         std::copy(lines.begin(), lines.end(), std::inserter(refLine, refLine.end()));
-        //refPoint.insert(refPoint.end(), points.begin(), points.end());
-        //refLine.insert(refLine.end(), lines.begin(), lines.end());
+        std::copy(texts.begin(), texts.end(), std::inserter(refText, refText.end()));
     }
 };
 

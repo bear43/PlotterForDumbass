@@ -1,3 +1,5 @@
+#include <utility>
+
 //
 // Created by kostya on 30.12.18.
 //
@@ -28,6 +30,9 @@ public:
     Text(string &str, Point<float>* point, unsigned char size) : str(str), p(point), size(size)
     {}
 
+    Text(string str, Point<float>* point, unsigned char size) : str(std::move(str)), p(point), size(size)
+    {}
+
     ~Text()
     {
         delete p;
@@ -38,8 +43,8 @@ public:
     {
         glPushMatrix();
         float s = size/3000.0f;
-        glScalef(s, s, s);
         glTranslatef(x, y, z);
+        glScalef(s, s, s);
         glColor4ub(red, green, blue, alpha);
         glutStrokeString(GLUT_STROKE_ROMAN, c_str);
         glPopMatrix();

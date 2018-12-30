@@ -23,12 +23,12 @@ public:
     void render()
     {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        glPushMatrix();
         for(Point<float>* p : points)
             p->render();
         for(Line* p : lines)
             p->render();
-        glPopMatrix();
+        for(Text* p : texts)
+            p->out();
         Text::out("test", 0.5f, 0.5f, 0.0f, 255, 127, 0, 255, 5);
         glFlush();
         glutSwapBuffers();

@@ -14,7 +14,7 @@ template <typename T>
 class Point
 {
 protected:
-    Color& color = (Color&)(Color::whiteColor);
+    Color color = (Color::whiteColor);
     float size = 1.0f;
 public:
 
