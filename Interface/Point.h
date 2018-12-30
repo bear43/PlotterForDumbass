@@ -7,20 +7,21 @@
 
 #include <vector>
 #include <GL/gl.h>
+#include "Color.h"
 
 using namespace std;
 template <typename T>
 class Point
 {
 protected:
-    unsigned char r = 0;
-    unsigned char g = 0;
-    unsigned char b = 0;
+    Color& color = (Color&)(Color::whiteColor);
     float size = 1.0f;
 public:
-    //virtual explicit Point(vector<T> points) = 0;
 
     Point() = default;
+
+    explicit Point(Color& color) : color(color)
+    {}
 
     virtual void render() = 0;
 
@@ -28,41 +29,14 @@ public:
 
     virtual void setPoints(vector<T> &points) = 0;
 
-    unsigned char getR() const
+    Color &getColor()
     {
-        return r;
+        return color;
     }
 
-    void setR(unsigned char r)
+    void setColor(Color &color)
     {
-        Point::r = r;
-    }
-
-    unsigned char getG() const
-    {
-        return g;
-    }
-
-    void setG(unsigned char g)
-    {
-        Point::g = g;
-    }
-
-    unsigned char getB() const
-    {
-        return b;
-    }
-
-    void setB(unsigned char b)
-    {
-        Point::b = b;
-    }
-
-    void setRGB(unsigned char r, unsigned char g, unsigned char b)
-    {
-        this->r = r;
-        this->g = g;
-        this->b = b;
+        Point::color = color;
     }
 
     float getSize() const

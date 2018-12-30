@@ -12,7 +12,6 @@ void f_x2(vector<Point<double>*> &refPoints)
     {
         normalizedValue = x/20.0;
         pPoint = new BasePoint2<double>(normalizedValue, normalizedValue*normalizedValue);
-        pPoint->setRGB(128, 32, 0);
         pPoint->setSize(2.0f);
         refPoints.push_back(pPoint);
     }
@@ -26,7 +25,6 @@ void f_x(vector<Point<double>*> &refPoints)
     {
         normalizedValue = x/20.0;
         pPoint = new BasePoint2<double>(normalizedValue, normalizedValue);
-        pPoint->setRGB(128, 32, 0);
         pPoint->setSize(2.0f);
         refPoints.push_back(pPoint);
     }

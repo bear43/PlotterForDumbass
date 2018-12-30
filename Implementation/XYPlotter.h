@@ -7,12 +7,13 @@
 
 #include "BasePoint2.h"
 #include "../Interface/Plotter.h"
+#include "../Interface/Color.h"
 
 
 class XYPlotter : public Plotter
 {
 private:
-    unsigned char lineColor[3];
+    Color& color;
     void generatePoints() override
     {
 
@@ -21,29 +22,21 @@ private:
     void generateLines() override
     {
         Point<double>* pPoint;
-        pPoint = (Point<double>*)(new BasePoint2<float>(-1.0f, 0.0f));
-        pPoint->setRGB(lineColor[0], lineColor[1], lineColor[2]);
+        pPoint = (Point<double>*)(new BasePoint2<float>(-1.0f, 0.0f, color));
         lines.push_back(pPoint);
-        pPoint = (Point<double>*)(new BasePoint2<float>(1.0f, 0.0f));
-        pPoint->setRGB(lineColor[0], lineColor[1], lineColor[2]);
+        pPoint = (Point<double>*)(new BasePoint2<float>(1.0f, 0.0f, color));
         lines.push_back(pPoint);
-        pPoint = (Point<double>*)(new BasePoint2<float>(0.0f, -1.0f));
-        pPoint->setRGB(lineColor[0], lineColor[1], lineColor[2]);
+        pPoint = (Point<double>*)(new BasePoint2<float>(0.0f, -1.0f, color));
         lines.push_back(pPoint);
-        pPoint = (Point<double>*)(new BasePoint2<float>(0.0f, 1.0f));
-        pPoint->setRGB(lineColor[0], lineColor[1], lineColor[2]);
+        pPoint = (Point<double>*)(new BasePoint2<float>(0.0f, 1.0f, color));
         lines.push_back(pPoint);
     }
 
 public:
-    XYPlotter(Drawer& drawerInstance, const unsigned char lineColor[3]) : Plotter(drawerInstance)
-    {
-        this->lineColor[0] = lineColor[0];
-        this->lineColor[1] = lineColor[1];
-        this->lineColor[2] = lineColor[2];
-    }
+    XYPlotter(Drawer& drawerInstance, Color& color) : Plotter(drawerInstance), color(color)
+    {}
 
-    explicit XYPlotter(Drawer& drawerInstance) : XYPlotter(drawerInstance, initializer_list<unsigned char>({ 255, 255, 255 }).begin())
+    explicit XYPlotter(Drawer& drawerInstance) : XYPlotter(drawerInstance, (Color&)Color::whiteColor)
     {}
 
     XYPlotter() = default;

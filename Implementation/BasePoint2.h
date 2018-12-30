@@ -13,7 +13,11 @@ class BasePoint2 : public BasePoint1<T>
 protected:
     T point1;
 public:
-    BasePoint2(T point0, T point1) : BasePoint1<T>(point0), point1(point1)
+    BasePoint2(T point0, T point1, Color& color) : BasePoint1<T>(point0), point1(point1)
+    {
+        this->color = color;
+    }
+    BasePoint2(T point0, T point1) : BasePoint2<T>(point0, point1, (Color&)Color::whiteColor)
     {}
     BasePoint2() : BasePoint2(0.0f, 0.0f)
     {}
@@ -48,7 +52,7 @@ public:
     {
         glPointSize(this->size);
         glBegin(GL_POINTS);
-        glColor3ub(this->r, this->g, this->b);
+        glColor3ub(this->color.getRed(), this->color.getGreen(), this->color.getBlue());
         glVertex2f(this->point0, point1);
         glEnd();
     }
