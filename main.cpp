@@ -1,32 +1,31 @@
 #include <iostream>
-//#include <thread>
 #include <vector>
 #include "Implementation/Drawer/BaseDrawer.h"
 #include "Implementation/Plotter/XYPlotter.h"
 
-void f_x2(vector<Point<double>*> &refPoints)
+void f_x2(set<Point<float>*> &refPoints)
 {
-    double normalizedValue;
-    BasePoint2<double>* pPoint;
-    for(double x = -20; x <= 20; x+= 0.1)
+    float normalizedValue;
+    BasePoint2<float>* pPoint;
+    for(float x = -20; x <= 20; x+= 0.1f)
     {
-        normalizedValue = x/20.0;
-        pPoint = new BasePoint2<double>(normalizedValue, normalizedValue*normalizedValue);
+        normalizedValue = x/20.0f;
+        pPoint = new BasePoint2<float>(normalizedValue, normalizedValue*normalizedValue);
         pPoint->setSize(2.0f);
-        refPoints.push_back(pPoint);
+        refPoints.insert(pPoint);
     }
 }
 
-void f_x(vector<Point<double>*> &refPoints)
+void f_x(set<Point<float>*> &refPoints)
 {
-    double normalizedValue;
-    BasePoint2<double>* pPoint;
-    for(double x = -20; x <= 20; x+= 0.1)
+    float normalizedValue;
+    BasePoint2<float>* pPoint;
+    for(float x = -20; x <= 20; x+= 0.1f)
     {
-        normalizedValue = x/20.0;
-        pPoint = new BasePoint2<double>(normalizedValue, normalizedValue);
+        normalizedValue = x/20.0f;
+        pPoint = new BasePoint2<float>(normalizedValue, normalizedValue);
         pPoint->setSize(2.0f);
-        refPoints.push_back(pPoint);
+        refPoints.insert(pPoint);
     }
 }
 
@@ -42,8 +41,8 @@ int main()
     BaseDrawer bs;
     XYPlotter xp(bs);
     xp.update();
-    vector<Point<double>*> &refPoints = bs.getPoints();
+    set<Point<float>*> &refPoints = bs.getPoints();
     f_x(refPoints);
-    bs.init();
+    BaseDrawer::init();
     return 0;
 }

@@ -13,8 +13,10 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include <set>
 #include "Point.h"
 #include "Line.h"
+#include "Text.h"
 
 #define DEFAULT_WIDTH 640
 #define DEFAULT_HEIGHT 480
@@ -46,7 +48,7 @@ public:
     {
         for(Drawer* dr : drawerInstances)
         {
-            for(Point<double>* pPoint : dr->getPoints())
+            for(Point<float>* pPoint : dr->getPoints())
                 delete pPoint;
             for(Line* pLine : dr->getLines())
                 delete pLine;
@@ -89,13 +91,29 @@ public:
 
     static void setTitle(const string &title);
 
-    virtual vector<Point<double>*> &getPoints() = 0;
+    virtual set<Point<float>*> &getPoints() = 0;
 
-    virtual void setPoints(vector<Point<double>*> &points) = 0;
+    virtual void setPoints(set<Point<float>*> &points) = 0;
 
-    virtual vector<Line*> &getLines() = 0;
+    virtual set<Line*> &getLines() = 0;
 
-    virtual void setLines(vector<Line*> &lines) = 0;
+    virtual void setLines(set<Line*> &lines) = 0;
+
+    virtual set<Text*> &getTexts() = 0;
+
+    virtual void setTexts(set<Text*> &lines) = 0;
+
+    virtual void addText(Text* text) = 0;
+
+    virtual bool removeText(Text* text) = 0;
+
+    virtual void addPoint(Point<float>* point) = 0;
+
+    virtual bool removePoint(Point<float>* point) = 0;
+
+    virtual void addLine(Line* line) = 0;
+
+    virtual bool removeLine(Line* line) = 0;
 };
 
 vector<Drawer*> Drawer::drawerInstances;

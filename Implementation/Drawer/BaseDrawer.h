@@ -7,24 +7,29 @@
 
 #include "../../Interface/Drawer.h"
 #include "../../Interface/Point.h"
+#include "../../Interface/Text.h"
 #include <iostream>
 #include <cmath>
+#include <algorithm>
+#include <set>
 
 class BaseDrawer : public Drawer
 {
 private:
-    vector<Point<double>*> points;
-    vector<Line*> lines;
+    set<Point<float>*> points;
+    set<Line*> lines;
+    set<Text*> texts;
 public:
     void render()
     {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glPushMatrix();
-        for(Point<double>* p : points)
+        for(Point<float>* p : points)
             p->render();
         for(Line* p : lines)
             p->render();
         glPopMatrix();
+        Text::out("test", 0.5f, 0.5f, 0.0f, 255, 127, 0, 255, 5);
         glFlush();
         glutSwapBuffers();
         glutPostRedisplay();
@@ -45,24 +50,73 @@ public:
         drawerInstances.push_back(this);
     }
 
-    vector<Point<double>*> &getPoints()
+    set<Point<float>*> &getPoints()
     {
         return points;
     }
 
-    void setPoints(vector<Point<double>*> &points)
+    void setPoints(set<Point<float>*> &points)
     {
         BaseDrawer::points = points;
     }
 
-    vector<Line*> &getLines()
+    set<Line*> &getLines()
     {
         return lines;
     }
 
-    void setLines(vector<Line*> &lines)
+    void setLines(set<Line*> &lines)
     {
         BaseDrawer::lines = lines;
+    }
+
+    set<Text*> &getTexts()
+    {
+        return texts;
+    }
+
+    void setTexts(set<Text *> &texts)
+    {
+        BaseDrawer::texts = texts;
+    }
+
+    void addText(Text *text) override
+    {
+        texts.insert(text);
+    }
+
+    bool removeText(Text *text) override
+    {
+        auto it = find(texts.begin(), texts.end(), text);
+        if(it == texts.end()) return false;
+        texts.erase(it);
+        return true;
+    }
+
+    void addPoint(Point<float> *point) override
+    {
+        points.insert(point);
+    }
+
+    bool removePoint(Point<float> *point) override
+    {
+        auto it = find(points.begin(), points.end(), point);
+        if(it == points.end()) return false;
+        points.erase(it);
+        return true;
+    }
+
+    void addLine(Line *line) override
+    {
+        lines.insert(line);
+    }
+
+    bool removeLine(Line *line) override
+    {
+        auto it = find(lines.begin(), lines.end(), line);
+        if(it == lines.end()) return false;
+        lines.erase(it);
+        return true;
     }
 };
 

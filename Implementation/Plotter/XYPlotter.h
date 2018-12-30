@@ -24,9 +24,9 @@ private:
     {
         Line* pLine;
         pLine = new Line2(new BasePoint2<float>(-1.0f, 0.0f), new BasePoint2<float>(1.0f, 0.0f));
-        lines.push_back(pLine);
+        lines.insert(pLine);
         pLine = new Line2(new BasePoint2<float>(0.0f, -1.0f), new BasePoint2<float>(0.0f, 1.0f));
-        lines.push_back(pLine);
+        lines.insert(pLine);
     }
 
 public:
