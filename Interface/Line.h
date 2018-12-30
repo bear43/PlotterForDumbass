@@ -10,10 +10,19 @@
 class Line
 {
 protected:
-    Point<double> &startPoint;
-    Point<double> &endPoint;
-
+    Point<float> *startPoint;
+    Point<float> *endPoint;
 public:
+    Line(Point<float> *startPoint, Point<float> *endPoint) : startPoint(startPoint), endPoint(endPoint)
+    {}
+
+    virtual ~Line()
+    {
+        delete startPoint;
+        delete endPoint;
+    }
+
+    virtual void render() = 0;
 };
 
 

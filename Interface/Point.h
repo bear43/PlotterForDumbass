@@ -23,11 +23,18 @@ public:
     explicit Point(Color& color) : color(color)
     {}
 
+    virtual ~Point()
+    {
+
+    }
+
     virtual void render() = 0;
 
     virtual vector<T> getPoints() = 0;
 
     virtual void setPoints(vector<T> &points) = 0;
+
+    virtual T operator[](int index) = 0;
 
     Color &getColor()
     {

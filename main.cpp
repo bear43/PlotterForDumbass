@@ -1,8 +1,8 @@
 #include <iostream>
 //#include <thread>
 #include <vector>
-#include "Implementation/BaseDrawer.h"
-#include "Implementation/XYPlotter.h"
+#include "Implementation/Drawer/BaseDrawer.h"
+#include "Implementation/Plotter/XYPlotter.h"
 
 void f_x2(vector<Point<double>*> &refPoints)
 {

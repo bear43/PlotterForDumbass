@@ -8,13 +8,14 @@
 //#include <GL/gl.h>
 #include "Point.h"
 #include "Drawer.h"
+#include "Line.h"
 
 class Plotter
 {
 protected:
     Drawer& drawer;
     vector<Point<double>*> points;
-    vector<Point<double>*> lines;
+    vector<Line*> lines;
     virtual void generatePoints() = 0;
     virtual void generateLines() = 0;
 public:
@@ -23,10 +24,10 @@ public:
     Plotter() = default;
     void update()
     {
-        if(points.size() == 0) generatePoints();
-        if(lines.size() == 0) generateLines();
+        if(points.empty()) generatePoints();
+        if(lines.empty()) generateLines();
         vector<Point<double>*> &refPoint = drawer.getPoints();
-        vector<Point<double>*> &refLine = drawer.getLines();
+        vector<Line*> &refLine = drawer.getLines();
         refPoint.insert(refPoint.end(), points.begin(), points.end());
         refLine.insert(refLine.end(), lines.begin(), lines.end());
     }

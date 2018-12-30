@@ -5,7 +5,7 @@
 #ifndef UNTITLED2_BASEPOINT1_H
 #define UNTITLED2_BASEPOINT1_H
 
-#include "../Interface/Point.h"
+#include "../../Interface/Point.h"
 #include <GL/gl.h>
 
 template <typename T>
@@ -55,6 +55,11 @@ public:
         glColor3ub(this->color.getRed(), this->color.getGreen(), this->color.getBlue());
         glVertex2f(this->point0, 0.0f);
         glEnd();
+    }
+
+    T operator[](int index) override
+    {
+        return point0;
     }
 };
 

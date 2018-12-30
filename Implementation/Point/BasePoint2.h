@@ -57,6 +57,18 @@ public:
         glEnd();
     }
 
+    T operator[](int index) override
+    {
+        switch(index)
+        {
+            case 0:
+                return this->point0;
+            case 1:
+                return this->point1;
+            default:
+                return 0;
+        }
+    }
 };
 
 

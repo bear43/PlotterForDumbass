@@ -115,6 +115,23 @@ public:
     static const Color blueColor;
     static const Color whiteColor;
     static const Color blackColor;
+
+    unsigned char operator[](int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return red;
+            case 1:
+                return green;
+            case 2:
+                return blue;
+            case 3:
+                return alpha;
+            default:
+                return 0;
+        }
+    }
 };
 
 /**

@@ -5,8 +5,8 @@
 #ifndef UNTITLED2_BASEDRAWER_H
 #define UNTITLED2_BASEDRAWER_H
 
-#include "../Interface/Drawer.h"
-#include "../Interface/Point.h"
+#include "../../Interface/Drawer.h"
+#include "../../Interface/Point.h"
 #include <iostream>
 #include <cmath>
 
@@ -14,13 +14,15 @@ class BaseDrawer : public Drawer
 {
 private:
     vector<Point<double>*> points;
-    vector<Point<double>*> lines;
+    vector<Line*> lines;
 public:
     void render()
     {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glPushMatrix();
         for(Point<double>* p : points)
+            p->render();
+        for(Line* p : lines)
             p->render();
         glPopMatrix();
         glFlush();
@@ -53,12 +55,12 @@ public:
         BaseDrawer::points = points;
     }
 
-    vector<Point<double>*> &getLines()
+    vector<Line*> &getLines()
     {
         return lines;
     }
 
-    void setLines(vector<Point<double>*> &lines)
+    void setLines(vector<Line*> &lines)
     {
         BaseDrawer::lines = lines;
     }

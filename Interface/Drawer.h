@@ -14,6 +14,7 @@
 #include <string>
 #include <algorithm>
 #include "Point.h"
+#include "Line.h"
 
 #define DEFAULT_WIDTH 640
 #define DEFAULT_HEIGHT 480
@@ -47,7 +48,7 @@ public:
         {
             for(Point<double>* pPoint : dr->getPoints())
                 delete pPoint;
-            for(Point<double>* pLine : dr->getLines())
+            for(Line* pLine : dr->getLines())
                 delete pLine;
         }
         drawerInstances.erase(find(drawerInstances.begin(), drawerInstances.end(), this));
@@ -92,9 +93,9 @@ public:
 
     virtual void setPoints(vector<Point<double>*> &points) = 0;
 
-    virtual vector<Point<double>*> &getLines() = 0;
+    virtual vector<Line*> &getLines() = 0;
 
-    virtual void setLines(vector<Point<double>*> &lines) = 0;
+    virtual void setLines(vector<Line*> &lines) = 0;
 };
 
 vector<Drawer*> Drawer::drawerInstances;

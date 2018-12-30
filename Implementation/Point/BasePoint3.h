@@ -53,6 +53,21 @@ public:
         glVertex2f(this->point0, this->point1, point2);
         glEnd();
     }
+
+    T operator[](int index) override
+    {
+        switch(index)
+        {
+            case 0:
+                return this->point0;
+            case 1:
+                return this->point1;
+            case 3:
+                return this->point2;
+            default:
+                return nullptr;
+        }
+    }
 };
 
 

@@ -11,4 +11,4 @@ link_libraries(-lglut)
 
 link_libraries(-lpthread)
 
-add_executable(untitled2 main.cpp Interface/Drawer.h Implementation/BaseDrawer.h Interface/Point.h Implementation/BasePoint1.h Implementation/BasePoint2.h Implementation/BasePoint3.h Interface/Plotter.h Implementation/XYPlotter.h Interface/Line.h Interface/Color.h)
+add_executable(untitled2 main.cpp Interface/Drawer.h Implementation/Drawer/BaseDrawer.h Interface/Point.h Implementation/Point/BasePoint1.h Implementation/Point/BasePoint2.h Implementation/Point/BasePoint3.h Interface/Plotter.h Implementation/Plotter/XYPlotter.h Interface/Line.h Interface/Color.h Implementation/Line/Line2.h Implementation/Line/Line3.h)
