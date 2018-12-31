@@ -9,6 +9,7 @@
 #include "../../Interface/Plotter.h"
 #include "../../Interface/Color.h"
 #include "../Line/Line2.h"
+#include "../Axis/Axis2.h"
 
 
 class XYPlotter : public Plotter
@@ -23,15 +24,10 @@ private:
     void generateLines() override
     {
         Line* pLine;
-        Text* pText;
-        pLine = new Line2(new BasePoint2<float>(-1.0f, 0.0f), new BasePoint2<float>(1.0f, 0.0f));
+        pLine = new Axis2(new BasePoint2<float>(-1.0f, 0.0f), new BasePoint2<float>(1.0f, 0.0f), "X1");
         lines.insert(pLine);
-        pText = new Text("X1", new BasePoint2<float>(0.9f, 0.02f, (Color&)Color::whiteColor), 2);
-        texts.insert(pText);
-        pLine = new Line2(new BasePoint2<float>(0.0f, -1.0f), new BasePoint2<float>(0.0f, 1.0f));
+        pLine = new Axis2(new BasePoint2<float>(0.0f, -1.0f), new BasePoint2<float>(0.0f, 1.0f), "X2");
         lines.insert(pLine);
-        pText = new Text("X2", new BasePoint2<float>(0.02f, 0.9f, (Color&)Color::whiteColor), 2);
-        texts.insert(pText);
     }
 
 public:

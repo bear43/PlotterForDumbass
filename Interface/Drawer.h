@@ -24,7 +24,7 @@
 
 using namespace std;
 
-class Drawer
+class Drawer : public Renderable
 {
 protected:
     static int width;
@@ -55,7 +55,6 @@ public:
         }
         drawerInstances.erase(find(drawerInstances.begin(), drawerInstances.end(), this));
     }
-    virtual void render() = 0;
 
     virtual void resize(int x, int y) = 0;
 

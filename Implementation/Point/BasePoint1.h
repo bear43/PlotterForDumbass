@@ -57,7 +57,7 @@ public:
         glEnd();
     }
 
-    T operator[](int index) override
+    T& operator[](int index) override
     {
         return point0;
     }

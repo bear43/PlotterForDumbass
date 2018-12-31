@@ -57,7 +57,7 @@ public:
         glEnd();
     }
 
-    T operator[](int index) override
+    T& operator[](int index) override
     {
         switch(index)
         {
@@ -66,8 +66,16 @@ public:
             case 1:
                 return this->point1;
             default:
-                return 0;
+                return this->point0;
         }
+    }
+
+    BasePoint2& operator=(BasePoint2<T> reference)
+    {
+        this->point0 = reference.point0;
+        this->point1 = reference.point1;
+        this->color = reference.color;
+        this->size = reference.size;
     }
 };
 

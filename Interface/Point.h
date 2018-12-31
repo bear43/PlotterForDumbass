@@ -8,10 +8,11 @@
 #include <vector>
 #include <GL/gl.h>
 #include "Color.h"
+#include "Renderable.h"
 
 using namespace std;
 template <typename T>
-class Point
+class Point : public Renderable
 {
 protected:
     Color color = (Color::whiteColor);
@@ -28,13 +29,11 @@ public:
 
     }
 
-    virtual void render() = 0;
-
     virtual vector<T> getPoints() = 0;
 
     virtual void setPoints(vector<T> &points) = 0;
 
-    virtual T operator[](int index) = 0;
+    virtual T& operator[](int index) = 0;
 
     Color &getColor()
     {
@@ -55,6 +54,7 @@ public:
     {
         Point::size = size;
     }
+
 };
 
 

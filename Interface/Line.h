@@ -7,7 +7,7 @@
 
 #include "Point.h"
 
-class Line
+class Line : public Renderable
 {
 protected:
     Point<float> *startPoint;
@@ -21,8 +21,6 @@ public:
         delete startPoint;
         delete endPoint;
     }
-
-    virtual void render() = 0;
 };
 
 

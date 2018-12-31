@@ -8,6 +8,7 @@
 #include "../../Interface/Drawer.h"
 #include "../../Interface/Point.h"
 #include "../../Interface/Text.h"
+#include "../../Interface/LineSeries.h"
 #include <iostream>
 #include <cmath>
 #include <algorithm>
@@ -19,17 +20,24 @@ private:
     set<Point<float>*> points;
     set<Line*> lines;
     set<Text*> texts;
+    set<LineSeries*> lineSeries;
+    float scale = 1.0f;
 public:
     void render()
     {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glPushMatrix();
+        glScalef(scale, scale, scale);
         for(Point<float>* p : points)
             p->render();
         for(Line* p : lines)
             p->render();
         for(Text* p : texts)
             p->out();
+        for(LineSeries* p : lineSeries)
+            p->render();
         Text::out("test", 0.5f, 0.5f, 0.0f, 255, 127, 0, 255, 5);
+        glPopMatrix();
         glFlush();
         glutSwapBuffers();
         glutPostRedisplay();
@@ -117,6 +125,31 @@ public:
         if(it == lines.end()) return false;
         lines.erase(it);
         return true;
+    }
+
+    float getScale() const
+    {
+        return scale;
+    }
+
+    void setScale(float scale)
+    {
+        BaseDrawer::scale = scale;
+    }
+
+    const set<LineSeries *> &getLineSeries() const
+    {
+        return lineSeries;
+    }
+
+    void setLineSeries(const set<LineSeries *> &lineSeries)
+    {
+        BaseDrawer::lineSeries = lineSeries;
+    }
+
+    void addLineSeries(LineSeries* series)
+    {
+        lineSeries.insert(series);
     }
 };
 
